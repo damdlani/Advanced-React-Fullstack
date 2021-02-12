@@ -15,7 +15,7 @@ export const CreateProduct = () => {
           type="text"
           id="name"
           name="name"
-          placeholder="Name"
+          placeholder="Nameee"
           value={inputs.name}
           onChange={onChangeHandle}
         />
