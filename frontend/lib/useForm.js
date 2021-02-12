@@ -11,7 +11,8 @@ export const useForm = (initial = {}) => {
     }
 
     if (type === "file") {
-      value[0] = files;
+      [value] = files; 
+      //take the first thing out of 'files' and stick it into a value
     }
 
     setInputs({
@@ -19,6 +20,10 @@ export const useForm = (initial = {}) => {
       [name]: value,
     });
   };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+  }
 
   const clearForm = () => {
     const blankForm = Object.fromEntries(
@@ -34,6 +39,7 @@ export const useForm = (initial = {}) => {
   return {
     inputs,
     onChangeHandle,
+    onFormSubmit,
     clearForm,
     resetForm,
   };
