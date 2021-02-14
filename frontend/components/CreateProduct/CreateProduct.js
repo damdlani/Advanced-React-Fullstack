@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { useForm } from "../../lib/useForm";
+import Router from "next/router";
 import Form from "../styles/Form";
 import DisplayError from "../ErrorMessage";
 import { CREATE_PRODUCT_MUTATION } from "./queries";
@@ -34,6 +35,10 @@ export const CreateProduct = () => {
         onFormSubmit(e);
         const { data } = await createProduct();
         resetForm();
+        Router.push({
+          pathname: `/product/${data.createProduct.id}`,
+        });
+        //go to created product's page
       }}
     >
       <DisplayError error={error} />
