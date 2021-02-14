@@ -23,7 +23,7 @@ export const SingleProduct = ({ id }) => {
       </Head>
       {/*above is for the browser tag title to change*/}
       <img
-        src={item.photo.image.publicUrlTransformed}
+        src={item.photo.image?.publicUrlTransformed}
         alt={item.photo.altText}
       ></img>
       <div className="details">
