@@ -1,5 +1,9 @@
-import { useForm } from "../lib/useForm";
-import Form from "./styles/Form";
+import { useMutation } from "@apollo/client";
+import { useForm } from "../../lib/useForm";
+import Form from "../styles/Form";
+import DisplayError from "../ErrorMessage";
+import { CREATE_PRODUCT_MUTATION } from "./queries";
+import { ALL_PRODUCTS_QUERY } from "../Products/queries";
 
 export const CreateProduct = () => {
   const {
@@ -9,19 +13,34 @@ export const CreateProduct = () => {
     resetForm,
     clearForm,
   } = useForm({
-    image: "",
-    name: "s",
-    price: "1",
-    description: "s",
+    name: "",
+    description: "",
+    price: "",
+    image: null,
   });
 
+  const [createProduct, { loading, error }] = useMutation(
+    CREATE_PRODUCT_MUTATION,
+    {
+      variables: inputs,
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
+      //for the product list to be updated after creating a product
+    }
+  );
+
   return (
-    <Form onSubmit={onFormSubmit}>
-      <fieldset>
+    <Form
+      onSubmit={async (e) => {
+        onFormSubmit(e);
+        const { data } = await createProduct();
+        resetForm();
+      }}
+    >
+      <DisplayError error={error} />
+      <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="image">
           Image
           <input
-            required
             type="file"
             id="image"
             name="image"
@@ -31,6 +50,7 @@ export const CreateProduct = () => {
         <label htmlFor="name">
           Name
           <input
+            required
             type="text"
             id="name"
             name="name"
@@ -42,6 +62,7 @@ export const CreateProduct = () => {
         <label htmlFor="price">
           Price
           <input
+            required
             type="number"
             id="price"
             name="price"
@@ -53,9 +74,10 @@ export const CreateProduct = () => {
         <label htmlFor="description">
           Description
           <textarea
+            required
             id="description"
             name="description"
-            placeholder="description"
+            placeholder="Description"
             value={inputs.description}
             onChange={onChangeHandle}
           />
