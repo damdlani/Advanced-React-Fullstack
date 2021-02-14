@@ -8,6 +8,13 @@ export const SINGLE_ITEM_QUERY = gql`
       name
       price
       description
+      id
+      photo {
+        altText
+        image {
+          publicUrlTransformed
+        }
+      }
     }
   }
 `;
