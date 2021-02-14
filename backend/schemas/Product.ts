@@ -28,7 +28,7 @@ export const Product = list({
       ],
       defaultValue: "DRAFT",
       ui: {
-        displayMode: "select",
+        displayMode: "segmented-control",
         createView: { fieldMode: "hidden" },
       },
     }),
