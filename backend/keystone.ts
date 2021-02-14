@@ -41,6 +41,7 @@ export default withAuth(
         if(process.argv.includes('--seed-data')){
           await insertSeedData(keystone);
         };
+        //adding doomy data after command 'npm run seed-data'
       },
     },
     lists: createSchema({
