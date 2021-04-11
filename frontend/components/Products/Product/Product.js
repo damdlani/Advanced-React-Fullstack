@@ -3,6 +3,7 @@ import ProductItem from "../../styles/ItemStyles";
 import Title from "../../styles/Title";
 import PriceTag from "../../styles/PriceTag";
 import { formatMoney } from "../../../lib/formatMoney";
+import { DeleteProduct } from "../../DeleteProduct/DeleteProduct";
 
 export const Product = ({ product }) => {
   const { name, photo, id, price, description } = product;
@@ -26,6 +27,7 @@ export const Product = ({ product }) => {
         >
           Edit ✏️
         </Link>
+        <DeleteProduct id={id}>Delete</DeleteProduct>
       </div>
     </ProductItem>
   );
