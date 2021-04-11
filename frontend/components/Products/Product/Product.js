@@ -16,12 +16,16 @@ export const Product = ({ product }) => {
       <PriceTag>{formatMoney(price)}</PriceTag>
       <p>{description}</p>
       <div className="buttonList">
-        <Link href={{
-          pathname: 'update',
-          query: {
-            id
-          },
-        }}>Edit ✏️</Link>
+        <Link
+          href={{
+            pathname: "update",
+            query: {
+              id,
+            },
+          }}
+        >
+          Edit ✏️
+        </Link>
       </div>
     </ProductItem>
   );

@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const useForm = (initial = {}) => {
   const [inputs, setInputs] = useState(initial);
+  const initialValues = Object.values(initial).join(" ");
+  
+  useEffect(() => {
+    setInputs(initial);
+  }, [initialValues]);
 
   const onChangeHandle = (event) => {
     let { value, name, type, files } = event.target;

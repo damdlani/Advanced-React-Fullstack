@@ -15,16 +15,7 @@ export const UpdateSingleProduct = ({ id }) => {
   const [
     updateProduct,
     { loading: updateLoading, error: updateError },
-  ] = useMutation(UPDATE_PRODUCT_MUTATION, {
-    variables: {
-      id: id,
-      //pass updates to product
-    },
-  });
-
-  // useEffect(() => {
-
-  // }, [data])
+  ] = useMutation(UPDATE_PRODUCT_MUTATION);
 
   const {
     inputs,
@@ -34,7 +25,6 @@ export const UpdateSingleProduct = ({ id }) => {
     clearForm,
   } = useForm(data?.Product);
 
-  console.log(inputs.name)
   if (loading) return <p>Loading...</p>;
   if (error) return <DisplayError error={error} />;
 
@@ -52,7 +42,7 @@ export const UpdateSingleProduct = ({ id }) => {
           },
         });
 
-        resetForm();
+        clearForm();
       }}
     >
       <DisplayError error={error || updateError} />

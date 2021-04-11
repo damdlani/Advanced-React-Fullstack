@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Product } from "./Procuct/Product";
+import { Product } from "./Product/Product";
 import { ALL_PRODUCTS_QUERY } from "./queries";
 import { ProductsList } from "./styled";
 

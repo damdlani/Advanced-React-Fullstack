@@ -1,5 +1,5 @@
 import { UpdateSingleProduct } from "../components/SingleProduct/UpdateSingleProduct/UpdateSingleProduct";
-
+//destructured props.query
 const UpdatePage = ({query}) => {
   
   return (
