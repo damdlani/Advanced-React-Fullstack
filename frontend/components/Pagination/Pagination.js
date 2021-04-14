@@ -8,11 +8,11 @@ import { perPage } from "../../config";
 
 export const Pagination = ({ page }) => {
   const { data, loading, error } = useQuery(PAGINATION_QUERY);
-
+  
   const count = data?._allProductsMeta.count;
   const pageCount = Math.ceil(count / perPage);
 
-  if (loading) return "Loading...";
+  if (loading) return "";
   if (error) return <DisplayError error={error} />;
 
   return (
@@ -26,7 +26,7 @@ export const Pagination = ({ page }) => {
       <p>Page {page} of {pageCount}</p>
       <p>{count} Items Total</p>
       <Link href={`/products/${page + 1}`}>
-        <a aria-disabled={page === pageCount}>Next &rarr;</a>
+        <a aria-disabled={page >= pageCount}>Next &rarr;</a>
       </Link>
     </PaginationStyles>
   );
