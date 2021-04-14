@@ -4,13 +4,13 @@ import { Products } from "../../components/Products/Products";
 
 const ProductsPage = () => {
   const { query } = useRouter();
-  const page = parseInt(query.page);
+  const page = parseInt(query.page) || 1;
 
   return (
     <div>
-      <Pagination page={page || 1} />
-      <Products />
-      <Pagination page={page || 1} />
+      <Pagination page={page} />
+      <Products page={page} />
+      <Pagination page={page} />
     </div>
   );
 };
